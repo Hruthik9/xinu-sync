@@ -1,0 +1,12 @@
+*.o
+*.a
+xinu
+xinu.elf
+xinu.bin
+xinu.map
+Tags
+tags
+cscope.*
+.DS_Store
+compile/xinu
+compile/xinu.boot

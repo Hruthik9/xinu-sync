@@ -1,0 +1,41 @@
+CSCI 8530 - Program Assignment 2: AND Synchronization
+Author 1: Nikhil Pembadi
+Author 2: S.Hruthik
+======================================================
+
+MODIFIED FILES AND PLACEMENT INSTRUCTIONS
+------------------------------------------
+
+The following files were modified and placed in the correct directories within the Xinu source tree:
+
+1. system/swait.c
+   -> Place in: <xinu-root>/system/swait.c
+   -> Implements the swait() system call (simultaneous wait on two semaphores)
+
+2. system/ssignal.c
+   -> Place in: <xinu-root>/system/ssignal.c
+   -> Implements the ssignal() system call (simultaneous signal on two semaphores)
+
+3. shell/xsh_dine.c
+   -> Place in: <xinu-root>/shell/xsh_dine.c   <-- NOTE: shell/ NOT system/
+   -> Modified from the provided template to seed the random number generator
+      using clktime so that each run of the 'dine' command produces different
+      think/eat times.
+
+NOTE: swait.c and ssignal.c go in system/ as per the default submission instructions. xsh_dine.c must go in shell/ -- it will NOT work if placed
+in system/.
+
+HOW TO BUILD
+------------
+cd <xinu-root>/compile
+make
+
+HOW TO TEST
+-----------
+After booting on the board, at the Xinu shell prompt:
+
+  dine 3        -- runs dining philosophers (4 philosophers, 3 meals each)
+  dine 5        -- runs with 5 meals each
+
+Expected output: all 4 philosophers complete all meals with no deadlock.
+
