@@ -1,6 +1,6 @@
 CSCI 8530 - Program Assignment 2: AND Synchronization
-
-Author : S.Hruthik
+Author 1: Nikhil Pembadi
+Author 2: S.Hruthik
 ======================================================
 
 MODIFIED FILES AND PLACEMENT INSTRUCTIONS
@@ -22,8 +22,26 @@ The following files were modified and placed in the correct directories within t
       using clktime so that each run of the 'dine' command produces different
       think/eat times.
 
-NOTE: swait.c and ssignal.c go in system/ as per the default submission instructions. xsh_dine.c must go in shell/ -- it will NOT work if placed
+MODIFIED SUPPORTING FILES (included because they were changed):
+---------------------------------------------------------------
+
+File            Path in Xinu tree              Why changed
+-----------     ----------------------------   ----------------------------------------
+xsh_dine.c      shell/xsh_dine.c               Added srand(clktime) to seed RNG
+lfscreate.c     device/lfs/lfscreate.c         Removed duplicate Lf_data (build fix)
+xsh_ls.c        shell/xsh_ls.c                 Removed duplicate Lf_data (build fix)
+xsh_mklfs.c     shell/xsh_mklfs.c              Removed duplicate Lf_data (build fix)
+
+Note on Lf_data fix: The variable 'struct lfdata Lf_data' was defined (not just
+declared) in four files: lfsinit.c, lfscreate.c, xsh_ls.c, and xsh_mklfs.c.
+This caused a "multiple definition" linker error. The definition was kept only
+in lfsinit.c (the correct location). The other three files use the extern
+declaration already present in include/lfilesys.h.
+
+NOTE: swait.c and ssignal.c go in system/ as per the default submission
+instructions. xsh_dine.c must go in shell/ -- it will NOT work if placed
 in system/.
+
 
 HOW TO BUILD
 ------------
